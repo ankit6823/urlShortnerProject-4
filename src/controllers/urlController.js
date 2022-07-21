@@ -53,7 +53,7 @@ const createUrl = async (req, res) => {
 
         //----------------check url----------------------------------------
         if (!isValid(longUrl))
-            return res.status(400).send({ status: false, msg: "url is required " })
+            return res.status(400).send({ status: false, messege: "url is required " })
 
         //--------------------check baseurl--------------------------------------
         if (!validUrl.isUri(baseUrl)) {
@@ -107,7 +107,7 @@ const getUrl = async function (req, res) {
             //---------find urlcode-------------------------------
             let urlData = await Url.findOne({ urlCode: req.params.urlCode }).select({ _id: 0, longUrl: 1 })
             
-            if (!urlData) return res.status(400).send({ status: false, msg: "urlcode is not found" })
+            if (!urlData) return res.status(400).send({ status: false,messege: "urlcode is not found" })
             await SET_ASYNC(`${urlCode}`, JSON.stringify(urlData))
     
             //-----------------send response--------------------------------------
